@@ -1,0 +1,274 @@
+<html>
+	<head>
+		<title>Editor di Sudoku</title>
+		<script type='text/javascript'>
+
+		//cella selezionata
+		var selected = null;
+		
+		//converte gli indici in formato stringa
+		function getId(i,j){
+			return (i+j*9+1).toString();
+		}
+		
+		//legge il contenuto di una cella i,j
+		function get(i,j){
+			return document.getElementById(getId(i,j)).innerHTML;
+		}
+		
+		//imposta il valore di una cella
+		function set(i,j,v){
+			document.getElementById(getId(i,j)).innerHTML = v;
+		}
+		
+		//check se la cella è vuota
+		function empty(i,j){
+			return get(i,j).charAt(0) == '_';
+		}
+		
+		//seleziona la cella
+		function select(cell){
+			cell.style.background = 'LawnGreen';
+			if(selected != null)
+				selected.style.background = 'White';
+			selected = cell;
+		}
+		
+		//imposta il colore di bg della cella
+		function setBG(i,j,color){
+			var cell = document.getElementById(getId(i,j)).parentNode;
+			cell.style.background = color;
+		}
+		
+		//fa 'lampeggiare' una cella in conflitto
+		function blink(i,j,r){
+			setBG(i,j,'Red');
+			setTimeout("setBG("+i+","+j+",'White')",300);
+			if(r){
+				setTimeout("blink("+i+","+j+",false)",500);
+				setTimeout("setBG("+i+","+j+",'White')",800);
+			}
+		}
+		
+		//controllo che non ci siano conflitti
+		function check(i,j,v){
+			var k,l;
+			var ok = true;
+			var x = Math.floor(i/3)*3;
+			var y = Math.floor(j/3)*3;
+
+			//controllo conflitti nel quadrato
+			for(k=0;k<3;k++){
+				for(l=0;l<3;l++){
+					if(get(x+l,y+k)==v && (x+l)!=i && (y+k)!=j){
+						blink(x+l,y+k,true);
+						ok = false;
+						break;
+					}
+				}
+			}
+			
+			//controllo conflitti per riga
+			for(k=0;k<9;k++){
+				if(get(k,j)==v && k!=i){
+					blink(k,j,true);
+					ok = false;
+					break;
+				}
+			}
+			
+			//controllo conflitti per colonna
+			for(k=0;k<9;k++){
+				if(get(i,k)==v && k!=j){
+					blink(i,k,true);
+					ok = false;
+					break;
+				}
+			}
+			
+		  if(ok)
+			set(i,j,v);  
+		}
+		
+		//gestisce l'evento onkeyup
+		function listen(e) {
+			var key;
+			if(window.event) key = e.keyCode; //funziona su Internet Explorer
+            else if(e.which) key = e.which;   //funziona sugli altri
+			
+			if(selected != null){
+				var id = parseInt(selected.firstChild.id)-1;
+				
+				if((key>=49 && key<=57) || (key>=97 && key<=105))
+					check(id%9,Math.floor(id/9),key2str(key))
+			}
+		}
+		
+		//converte da keycode a carattere corrispondente
+		//solo per le cifre da 1 a 9
+		function key2str(keycode){
+			switch(keycode){
+				case 49:
+				case 97:
+					return '1';
+				case 50:
+				case 98:
+					return '2';
+				case 51:
+				case 99:
+					return '3';
+				case 52:
+				case 100:
+					return '4';
+				case 53:
+				case 101:
+					return '5';
+				case 54:
+				case 102:
+					return '6';
+				case 55:
+				case 103:
+					return '7';
+				case 56:
+				case 104:
+					return '8';
+				case 57:
+				case 105:
+					return '9';
+			}
+		}
+		
+		//disegna il sudoku
+		function draw(){
+			var i,j;
+			for(i=0;i<9;i++)
+				for(j=0;j<9;j++){
+					var style = document.getElementById(getId(i,j)).parentNode.style;
+					
+					if(i%3 == 0)
+						style.borderLeft = 'Black Solid';
+					else
+						style.borderLeft = 'Black Thin Solid';
+					
+					if(i%3 == 2)
+						style.borderRight = 'Black Solid';
+					else
+						style.borderRight = 'Black Thin Solid';
+					
+					if(j%3 == 0)
+						style.borderTop = 'Black Solid';
+					else
+						style.borderTop = 'Black Thin Solid';
+					
+					if(j%3 == 2)
+						style.borderBottom = 'Black Solid';
+					else
+						style.borderBottom = 'Black Thin Solid';
+			}
+		}
+		</script>
+	</head>
+	<body onload='draw()' onkeyup='listen(event)'>
+		<table>
+			<tr height='35'>
+				<td align='center' onclick='select(this)' width='35'><span id='1'>_</span></td>
+				<td align='center' onclick='select(this)' width='35'><span id='2'>_</span></td>
+				<td align='center' onclick='select(this)' width='35'><span id='3'>_</span></td>
+				<td align='center' onclick='select(this)' width='35'><span id='4'>_</span></td>
+				<td align='center' onclick='select(this)' width='35'><span id='5'>_</span></td>
+				<td align='center' onclick='select(this)' width='35'><span id='6'>_</span></td>
+				<td align='center' onclick='select(this)' width='35'><span id='7'>_</span></td>
+				<td align='center' onclick='select(this)' width='35'><span id='8'>_</span></td>
+				<td align='center' onclick='select(this)' width='35'><span id='9'>_</span></td>
+			</tr>
+			<tr height='35'>
+				<td align='center' onclick='select(this)' width='35'><span id='10'>_</span></td>
+				<td align='center' onclick='select(this)' width='35'><span id='11'>_</span></td>
+				<td align='center' onclick='select(this)' width='35'><span id='12'>_</span></td>
+				<td align='center' onclick='select(this)' width='35'><span id='13'>_</span></td>
+				<td align='center' onclick='select(this)' width='35'><span id='14'>_</span></td>
+				<td align='center' onclick='select(this)' width='35'><span id='15'>_</span></td>
+				<td align='center' onclick='select(this)' width='35'><span id='16'>_</span></td>
+				<td align='center' onclick='select(this)' width='35'><span id='17'>_</span></td>
+				<td align='center' onclick='select(this)' width='35'><span id='18'>_</span></td>
+			</tr>
+			<tr height='35'>
+				<td align='center' onclick='select(this)' width='35'><span id='19'>_</span></td>
+				<td align='center' onclick='select(this)' width='35'><span id='20'>_</span></td>
+				<td align='center' onclick='select(this)' width='35'><span id='21'>_</span></td>
+				<td align='center' onclick='select(this)' width='35'><span id='22'>_</span></td>
+				<td align='center' onclick='select(this)' width='35'><span id='23'>_</span></td>
+				<td align='center' onclick='select(this)' width='35'><span id='24'>_</span></td>
+				<td align='center' onclick='select(this)' width='35'><span id='25'>_</span></td>
+				<td align='center' onclick='select(this)' width='35'><span id='26'>_</span></td>
+				<td align='center' onclick='select(this)' width='35'><span id='27'>_</span></td>
+			</tr>
+			<tr height='35'>
+				<td align='center' onclick='select(this)' width='35'><span id='28'>_</span></td>
+				<td align='center' onclick='select(this)' width='35'><span id='29'>_</span></td>
+				<td align='center' onclick='select(this)' width='35'><span id='30'>_</span></td>
+				<td align='center' onclick='select(this)' width='35'><span id='31'>_</span></td>
+				<td align='center' onclick='select(this)' width='35'><span id='32'>_</span></td>
+				<td align='center' onclick='select(this)' width='35'><span id='33'>_</span></td>
+				<td align='center' onclick='select(this)' width='35'><span id='34'>_</span></td>
+				<td align='center' onclick='select(this)' width='35'><span id='35'>_</span></td>
+				<td align='center' onclick='select(this)' width='35'><span id='36'>_</span></td>
+			</tr>
+			<tr height='35'>
+				<td align='center' onclick='select(this)' width='35'><span id='37'>_</span></td>
+				<td align='center' onclick='select(this)' width='35'><span id='38'>_</span></td>
+				<td align='center' onclick='select(this)' width='35'><span id='39'>_</span></td>
+				<td align='center' onclick='select(this)' width='35'><span id='40'>_</span></td>
+				<td align='center' onclick='select(this)' width='35'><span id='41'>_</span></td>
+				<td align='center' onclick='select(this)' width='35'><span id='42'>_</span></td>
+				<td align='center' onclick='select(this)' width='35'><span id='43'>_</span></td>
+				<td align='center' onclick='select(this)' width='35'><span id='44'>_</span></td>
+				<td align='center' onclick='select(this)' width='35'><span id='45'>_</span></td>
+			</tr>
+			<tr height='35'>
+				<td align='center' onclick='select(this)' width='35'><span id='46'>_</span></td>
+				<td align='center' onclick='select(this)' width='35'><span id='47'>_</span></td>
+				<td align='center' onclick='select(this)' width='35'><span id='48'>_</span></td>
+				<td align='center' onclick='select(this)' width='35'><span id='49'>_</span></td>
+				<td align='center' onclick='select(this)' width='35'><span id='50'>_</span></td>
+				<td align='center' onclick='select(this)' width='35'><span id='51'>_</span></td>
+				<td align='center' onclick='select(this)' width='35'><span id='52'>_</span></td>
+				<td align='center' onclick='select(this)' width='35'><span id='53'>_</span></td>
+				<td align='center' onclick='select(this)' width='35'><span id='54'>_</span></td>
+			</tr>
+			<tr height='35'>
+				<td align='center' onclick='select(this)' width='35'><span id='55'>_</span></td>
+				<td align='center' onclick='select(this)' width='35'><span id='56'>_</span></td>
+				<td align='center' onclick='select(this)' width='35'><span id='57'>_</span></td>
+				<td align='center' onclick='select(this)' width='35'><span id='58'>_</span></td>
+				<td align='center' onclick='select(this)' width='35'><span id='59'>_</span></td>
+				<td align='center' onclick='select(this)' width='35'><span id='60'>_</span></td>
+				<td align='center' onclick='select(this)' width='35'><span id='61'>_</span></td>
+				<td align='center' onclick='select(this)' width='35'><span id='62'>_</span></td>
+				<td align='center' onclick='select(this)' width='35'><span id='63'>_</span></td>
+			</tr>
+			<tr height='35'>
+				<td align='center' onclick='select(this)' width='35'><span id='64'>_</span></td>
+				<td align='center' onclick='select(this)' width='35'><span id='65'>_</span></td>
+				<td align='center' onclick='select(this)' width='35'><span id='66'>_</span></td>
+				<td align='center' onclick='select(this)' width='35'><span id='67'>_</span></td>
+				<td align='center' onclick='select(this)' width='35'><span id='68'>_</span></td>
+				<td align='center' onclick='select(this)' width='35'><span id='69'>_</span></td>
+				<td align='center' onclick='select(this)' width='35'><span id='70'>_</span></td>
+				<td align='center' onclick='select(this)' width='35'><span id='71'>_</span></td>
+				<td align='center' onclick='select(this)' width='35'><span id='72'>_</span></td>
+			</tr>
+			<tr height='35'>
+				<td align='center' onclick='select(this)' width='35'><span id='73'>_</span></td>
+				<td align='center' onclick='select(this)' width='35'><span id='74'>_</span></td>
+				<td align='center' onclick='select(this)' width='35'><span id='75'>_</span></td>
+				<td align='center' onclick='select(this)' width='35'><span id='76'>_</span></td>
+				<td align='center' onclick='select(this)' width='35'><span id='77'>_</span></td>
+				<td align='center' onclick='select(this)' width='35'><span id='78'>_</span></td>
+				<td align='center' onclick='select(this)' width='35'><span id='79'>_</span></td>
+				<td align='center' onclick='select(this)' width='35'><span id='80'>_</span></td>
+				<td align='center' onclick='select(this)' width='35'><span id='81'>_</span></td>
+			</tr>
+		</table>
+	</body>
+</html>

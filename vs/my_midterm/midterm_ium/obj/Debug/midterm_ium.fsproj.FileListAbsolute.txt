@@ -1,0 +1,8 @@
+C:\Users\Andrea\Desktop\uni\IUM\midterm\vs\my_midterm\midterm_ium\bin\Debug\midterm_ium.XML
+C:\Users\Andrea\Desktop\uni\IUM\midterm\vs\my_midterm\midterm_ium\bin\Debug\midterm_ium.dll
+C:\Users\Andrea\Desktop\uni\IUM\midterm\vs\my_midterm\midterm_ium\bin\Debug\midterm_ium.pdb
+C:\Users\Andrea\Desktop\uni\IUM\midterm\vs\my_midterm\midterm_ium\bin\Debug\FSharp.Core.dll
+C:\Users\Andrea\Desktop\uni\IUM\midterm\vs\my_midterm\midterm_ium\bin\Debug\FSharp.Core.xml
+C:\Users\Andrea\Desktop\uni\IUM\midterm\vs\my_midterm\midterm_ium\bin\Debug\it\FSharp.Core.resources.dll
+C:\Users\Andrea\Desktop\uni\IUM\midterm\vs\my_midterm\midterm_ium\obj\Debug\midterm_ium.dll
+C:\Users\Andrea\Desktop\uni\IUM\midterm\vs\my_midterm\midterm_ium\obj\Debug\midterm_ium.pdb

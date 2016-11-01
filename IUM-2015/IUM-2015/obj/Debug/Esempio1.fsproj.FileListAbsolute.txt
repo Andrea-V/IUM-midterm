@@ -1,0 +1,18 @@
+c:\Users\Antonio\documents\visual studio 2015\Projects\IUM-2015\IUM-2015\bin\Debug\IUM_2015.exe.config
+c:\Users\Antonio\documents\visual studio 2015\Projects\IUM-2015\IUM-2015\bin\Debug\IUM_2015.XML
+c:\Users\Antonio\documents\visual studio 2015\Projects\IUM-2015\IUM-2015\bin\Debug\IUM_2015.exe
+c:\Users\Antonio\documents\visual studio 2015\Projects\IUM-2015\IUM-2015\bin\Debug\IUM_2015.pdb
+c:\Users\Antonio\documents\visual studio 2015\Projects\IUM-2015\IUM-2015\bin\Debug\FSharp.Core.dll
+c:\Users\Antonio\documents\visual studio 2015\Projects\IUM-2015\IUM-2015\bin\Debug\FSharp.Core.xml
+c:\Users\Antonio\documents\visual studio 2015\Projects\IUM-2015\IUM-2015\obj\Debug\IUM_2015.exe
+c:\Users\Antonio\documents\visual studio 2015\Projects\IUM-2015\IUM-2015\obj\Debug\IUM_2015.pdb
+C:\Users\Andrea\Desktop\uni\IUM\midterm\IUM-2015\IUM-2015\bin\Debug\IUM_2015.exe.config
+C:\Users\Andrea\Desktop\uni\IUM\midterm\IUM-2015\IUM-2015\bin\Debug\IUM_2015.XML
+C:\Users\Andrea\Desktop\uni\IUM\midterm\IUM-2015\IUM-2015\bin\Debug\IUM_2015.exe
+C:\Users\Andrea\Desktop\uni\IUM\midterm\IUM-2015\IUM-2015\bin\Debug\IUM_2015.pdb
+C:\Users\Andrea\Desktop\uni\IUM\midterm\IUM-2015\IUM-2015\bin\Debug\FSharp.Core.dll
+C:\Users\Andrea\Desktop\uni\IUM\midterm\IUM-2015\IUM-2015\bin\Debug\FSharp.Core.xml
+C:\Users\Andrea\Desktop\uni\IUM\midterm\IUM-2015\IUM-2015\bin\Debug\it\FSharp.Core.resources.dll
+C:\Users\Andrea\Desktop\uni\IUM\midterm\IUM-2015\IUM-2015\obj\Debug\Esempio1.fsprojResolveAssemblyReference.cache
+C:\Users\Andrea\Desktop\uni\IUM\midterm\IUM-2015\IUM-2015\obj\Debug\IUM_2015.exe
+C:\Users\Andrea\Desktop\uni\IUM\midterm\IUM-2015\IUM-2015\obj\Debug\IUM_2015.pdb
